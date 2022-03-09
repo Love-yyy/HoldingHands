@@ -1,0 +1,6 @@
+*.sdf
+*.exe
+Debug
+Release
+ipch
+

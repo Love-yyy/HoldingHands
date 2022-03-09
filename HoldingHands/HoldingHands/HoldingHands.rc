@@ -1,0 +1,590 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+#include "verrsrc.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(简体，中国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "#include ""verrsrc.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#include ""res\\HoldingHands.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\HoldingHands.ico"
+IDI_FM_DEL              ICON                    "res\\del.ico"
+IDI_FM_GO               ICON                    "res\\go.ico"
+IDI_FM_NEWFOLDER        ICON                    "res\\newfolder.ico"
+IDI_FM_REFRESH          ICON                    "res\\refresh.ico"
+IDI_FM_SEARCH           ICON                    "res\\search.ico"
+IDI_FM_UP               ICON                    "res\\up.ico"
+IDI_FM_VIEW             ICON                    "res\\view.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MAINFRAME MENU
+BEGIN
+    POPUP "Main"
+    BEGIN
+        MENUITEM "StartServer",                 ID_MAIN_STARTSERVER
+        MENUITEM "Settings",                    ID_MAIN_SETTINGS
+        MENUITEM "Build",                       ID_MAIN_BUILD
+        MENUITEM "Exit",                        ID_MAIN_EXIT
+    END
+    POPUP "Operation"
+    BEGIN
+        MENUITEM SEPARATOR
+        MENUITEM "RemoteDesktop",               ID_OPERATION_REMOTEDESKTOP
+        MENUITEM "Keyboard",                    ID_OPERATION_KEYBOARD
+        MENUITEM "Camera",                      ID_OPERATION_CAMERA
+        MENUITEM "Microphone",                  ID_OPERATION_MICROPHONE
+        MENUITEM SEPARATOR
+        MENUITEM "FileManager",                 ID_OPERATION_FILEMANAGER
+        MENUITEM "ProcessManager",              ID_OPERATION_PROCESSMANAGER
+        MENUITEM "Regedit",                     ID_OPERATION_REGEDIT
+        MENUITEM "Cmd",                         ID_OPERATION_CMD
+        MENUITEM "ChatBox",                     ID_OPERATION_CHATBOX
+        MENUITEM SEPARATOR
+        POPUP "Session"
+        BEGIN
+            MENUITEM "Disconnect",                  ID_SESSION_DISCONNECT
+            MENUITEM "Restart",                     ID_SESSION_RESTART
+            MENUITEM "Uninstall",                   ID_SESSION_UNINSTALL
+            POPUP "Power"
+            BEGIN
+                MENUITEM "Reboot",                      ID_POWER_REBOOT
+                MENUITEM "Shutdown",                    ID_POWER_SHUTDOWN
+            END
+        END
+        POPUP "UploadModule"
+        BEGIN
+            MENUITEM "FromDisk",                    ID_UPLOADMODULE_FROMDISK
+            MENUITEM "FromUrl",                     ID_UPLOADMODULE_FROMURL
+        END
+        MENUITEM "EditComment",                 ID_OPERATION_EDITCOMMENT
+    END
+    POPUP "View"
+    BEGIN
+        MENUITEM "ClientList",                  ID_VIEW_CLIENTLIST, CHECKED
+        MENUITEM "Log",                         ID_VIEW_LOG, CHECKED
+    END
+    POPUP "About"
+    BEGIN
+        MENUITEM "AboutHoldingHands",           ID_APP_ABOUT
+    END
+END
+
+IDR_FM_MENU MENU
+BEGIN
+    POPUP "menu"
+    BEGIN
+        MENUITEM "NewFolder",                   ID_MENU_NEWFOLDER
+        MENUITEM SEPARATOR
+        POPUP "RunFile"
+        BEGIN
+            MENUITEM "Hide",                        ID_RUNFILE_HIDE
+            MENUITEM "Normal",                      ID_RUNFILE_NORMAL
+        END
+        MENUITEM SEPARATOR
+        POPUP "UploadToHere"
+        BEGIN
+            MENUITEM "FromDisk",                    ID_UPLOAD_FROMDISK
+            MENUITEM "FromUrl",                     ID_UPLOAD_FROMURL
+        END
+        MENUITEM "Download",                    ID_MENU_DOWNLOAD
+        MENUITEM SEPARATOR
+        MENUITEM "Cut",                         ID_MENU_CUT
+        MENUITEM "Copy",                        ID_MENU_COPY
+        MENUITEM "Paste",                       ID_MENU_PASTE
+        MENUITEM SEPARATOR
+        MENUITEM "Rename",                      ID_MENU_RENAME
+        MENUITEM "Delete",                      ID_MENU_DELETE
+    END
+    POPUP "view"
+    BEGIN
+        MENUITEM "Icon",                        ID_VIEW_ICON
+        MENUITEM "List",                        ID_VIEW_LIST
+        MENUITEM "Detailed",                    ID_VIEW_DETAILEDINFORMATION
+    END
+END
+
+IDR_RD_MENU MENU
+BEGIN
+    POPUP "Display"
+    BEGIN
+        MENUITEM "Stretch",                     ID_DISPLAY_STRETCH
+        MENUITEM "Tile",                        ID_DISPLAY_TILE
+        POPUP "MaxFps"
+        BEGIN
+            MENUITEM "10",                          ID_MAXFPS_10
+            MENUITEM "20",                          ID_MAXFPS_20
+            MENUITEM "30",                          ID_MAXFPS_30
+            MENUITEM "NoLimit",                     ID_MAXFPS_NOLIMIT
+        END
+    END
+    POPUP "Capture"
+    BEGIN
+        MENUITEM "Mouse",                       ID_CAPTURE_MOUSE
+        MENUITEM "TransparentWindow",           ID_CAPTURE_TRANSPARENTWINDOW
+    END
+    POPUP "Control"
+    BEGIN
+        MENUITEM "Mouse",                       ID_CONTROL_MOUSE
+        MENUITEM "Keyboard",                    ID_CONTROL_KEYBOARD
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 198, 83
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "HoldingHands，1.0 版",IDC_STATIC,40,14,114,8,SS_NOPREFIX
+    DEFPUSHBUTTON   "确定",IDOK,141,62,50,14,WS_GROUP
+    LTEXT           "Writer:BinSong",IDC_STATIC,40,31,114,8,SS_NOPREFIX
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,20,20
+    LTEXT           "QQ:1557729811",IDC_STATIC,40,47,114,8,SS_NOPREFIX
+END
+
+IDD_EDITCMT_DLG DIALOGEX 0, 0, 230, 33
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "EditComment"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,166,7,57,19
+    EDITTEXT        IDC_EDIT1,7,7,146,18,ES_AUTOHSCROLL
+END
+
+IDD_FILETRANS DIALOGEX 0, 0, 347, 160
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Getting file info......"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_TRANS_PROGRESS,"msctls_progress32",0x0,7,39,333,11
+    EDITTEXT        IDC_EDIT1,7,52,333,101,ES_MULTILINE | ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL
+    LTEXT           "CurrentFile:",IDC_STATIC,10,11,40,13
+    RTEXT           "0/0",IDC_SZIE_PROGRESS,245,25,87,13
+    RTEXT           "0/0",IDC_COUNT_PROGRESS,288,11,44,13
+    LTEXT           "-",IDC_CURRENT_FILE,54,11,221,13
+    LTEXT           "TransferredSize:",IDC_STATIC,11,25,77,13
+END
+
+IDD_URL_INPUT DIALOGEX 0, 0, 360, 26
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Please input url:(HTTP(s)/FTP)"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,303,7,50,12
+    EDITTEXT        IDC_EDIT1,7,7,290,12,ES_AUTOHSCROLL
+END
+
+IDD_MNDD_DLG DIALOGEX 0, 0, 362, 30
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "[0.0.0.0]GettingFileSize..."
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_DOWNLOAD_PROGRESS,"msctls_progress32",WS_BORDER,7,7,348,16
+END
+
+IDD_SELECT_FILE_DLG DIALOGEX 0, 0, 526, 320
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Please select files :"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,469,299,50,14
+    LTEXT           "Selected Files :",IDC_STATIC,14,301,54,8
+    EDITTEXT        IDC_EDIT1,69,300,395,13,ES_AUTOHSCROLL
+    CONTROL         "",IDC_MFCSHELLTREE1,"MfcShellTree",WS_HSCROLL | WS_TABSTOP | 0x7,7,7,150,287
+    CONTROL         "",IDC_MFCSHELLLIST1,"MfcShellList",WS_TABSTOP | 0x841,162,7,357,287
+END
+
+IDD_CHAT_NAME DIALOGEX 0, 0, 303, 61
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Chat"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,240,12,50,14
+    PUSHBUTTON      "取消",IDCANCEL,240,34,50,14
+    LTEXT           "Please enter your nick name:",IDC_STATIC,13,12,128,20
+    EDITTEXT        IDC_EDIT1,13,32,212,16,ES_AUTOHSCROLL
+END
+
+IDD_CHAT_DLG DIALOGEX 0, 0, 305, 136
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Chat"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Send",IDOK,249,121,56,15
+    EDITTEXT        IDC_EDIT1,0,0,305,122,ES_MULTILINE | ES_AUTOHSCROLL | WS_VSCROLL
+    EDITTEXT        IDC_EDIT2,0,122,250,14,ES_AUTOHSCROLL
+END
+
+IDD_FM_DLG DIALOGEX 0, 0, 587, 302
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "FileManager"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,37,19,549,13,ES_AUTOHSCROLL
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_SHAREIMAGELISTS | LVS_EDITLABELS | WS_BORDER | WS_TABSTOP,0,33,586,268
+    LTEXT           "Location:",IDC_STATIC,4,20,31,13
+END
+
+IDD_FILE_NAME_DLG DIALOGEX 0, 0, 236, 12
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_BORDER | WS_SYSMENU
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,0,0,184,12,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,184,0,52,12
+END
+
+IDD_FM_SEARCH_DLG DIALOGEX 0, 0, 308, 282
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Search",IDOK,247,10,50,31
+    GROUPBOX        "",IDC_STATIC,7,3,294,43
+    LTEXT           "TargetName:",IDC_STATIC,14,13,52,11
+    LTEXT           "Start Location:",IDC_STATIC,14,29,52,11
+    EDITTEXT        IDC_EDIT1,74,10,169,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT3,74,27,169,14,ES_AUTOHSCROLL
+    CONTROL         "",IDC_LIST1,"SysListView32",LVS_REPORT | LVS_SHAREIMAGELISTS | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,52,294,223
+END
+
+IDD_CAM_DLG DIALOGEX 0, 0, 373, 219
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    COMBOBOX        IDC_COMBO1,42,3,99,82,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "DeviceList",IDC_STATIC,3,5,36,11
+    PUSHBUTTON      "Start",IDC_BUTTON1,260,2,43,14
+    COMBOBOX        IDC_COMBO2,186,3,67,82,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    LTEXT           "VideoSize",IDC_STATIC,147,4,36,11
+    PUSHBUTTON      "ScreenShot",IDC_BUTTON2,306,2,43,14
+END
+
+IDD_AUDIODLG DIALOGEX 0, 0, 209, 45
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    LTEXT           "Listening....",IDC_STATIC,7,7,88,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x40004L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080404b0"
+        BEGIN
+            VALUE "CompanyName", "TODO:  <公司名>"
+            VALUE "FileDescription", "HoldingHands"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "HoldingHands.exe"
+            VALUE "LegalCopyright", "TODO:  (C) <公司名>。  保留所有权利。"
+            VALUE "OriginalFilename", "HoldingHands.exe"
+            VALUE "ProductName", "TODO:  <产品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 191
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 76
+    END
+
+    IDD_EDITCMT_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 223
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 26
+    END
+
+    IDD_FILETRANS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 340
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 153
+    END
+
+    IDD_URL_INPUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 353
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 19
+    END
+
+    IDD_MNDD_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 355
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 23
+    END
+
+    IDD_SELECT_FILE_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 519
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 313
+    END
+
+    IDD_CHAT_NAME, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 296
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 54
+    END
+
+    IDD_CHAT_DLG, DIALOG
+    BEGIN
+    END
+
+    IDD_FM_DLG, DIALOG
+    BEGIN
+    END
+
+    IDD_FILE_NAME_DLG, DIALOG
+    BEGIN
+    END
+
+    IDD_FM_SEARCH_DLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 301
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 275
+    END
+
+    IDD_CAM_DLG, DIALOG
+    BEGIN
+        RIGHTMARGIN, 352
+        BOTTOMMARGIN, 218
+    END
+
+    IDD_AUDIODLG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 202
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 38
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_SELECT_FILE_DLG DLGINIT
+BEGIN
+    IDC_MFCSHELLTREE1, 0x37c, 87, 0
+0x4d3c, 0x4346, 0x6853, 0x6c65, 0x546c, 0x6572, 0x4365, 0x7274, 0x5f6c, 
+0x6e45, 0x6261, 0x656c, 0x6853, 0x6c65, 0x436c, 0x6e6f, 0x6574, 0x7478, 
+0x654d, 0x756e, 0x543e, 0x5552, 0x3c45, 0x4d2f, 0x4346, 0x6853, 0x6c65, 
+0x546c, 0x6572, 0x4365, 0x7274, 0x5f6c, 0x6e45, 0x6261, 0x656c, 0x6853, 
+0x6c65, 0x436c, 0x6e6f, 0x6574, 0x7478, 0x654d, 0x756e, "\076" 
+    IDC_MFCSHELLLIST1, 0x37c, 87, 0
+0x4d3c, 0x4346, 0x6853, 0x6c65, 0x4c6c, 0x7369, 0x4374, 0x7274, 0x5f6c, 
+0x6e45, 0x6261, 0x656c, 0x6853, 0x6c65, 0x436c, 0x6e6f, 0x6574, 0x7478, 
+0x654d, 0x756e, 0x543e, 0x5552, 0x3c45, 0x4d2f, 0x4346, 0x6853, 0x6c65, 
+0x4c6c, 0x7369, 0x4374, 0x7274, 0x5f6c, 0x6e45, 0x6261, 0x656c, 0x6853, 
+0x6c65, 0x436c, 0x6e6f, 0x6574, 0x7478, 0x654d, 0x756e, "\076" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Toolbar
+//
+
+IDR_FM_TOOLBAR TOOLBAR 24, 24
+BEGIN
+    BUTTON      ID_FM_UP
+    BUTTON      ID_FM_DEL
+    BUTTON      ID_FM_SEARCH
+    BUTTON      ID_FM_REFRESH
+    BUTTON      ID_FM_NEWFOLDER
+    BUTTON      ID_FM_VIEW
+    BUTTON      ID_FM_GO
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDR_FM_TOOLBAR          BITMAP                  "res\\toolbar1.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    IDP_OLE_INIT_FAILED     "OLE 初始化失败。  请确保 OLE 库是正确的版本。"
+    ID_SERVER_STATU         "SvrStatu: Stopped"
+    ID_HOST_COUNT           "Host: 0"
+    ID_UPLOAD_SPEED         "Upload: 0 KB/S"
+    ID_DOWNLOAD_SPEED       "Download: 0KB/s"
+    ID_CUR_DATE             "[0000-00-00 00:00:00]"
+    ID_HOST_SELECTED        "Selected: 0"
+END
+
+STRINGTABLE
+BEGIN
+    IDR_MAINFRAME           "HoldingHands"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_APP_TITLE       "HoldingHands"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCSIZE          "更改窗口大小"
+    AFX_IDS_SCMOVE          "更改窗口位置"
+    AFX_IDS_SCMINIMIZE      "将窗口缩小成图标"
+    AFX_IDS_SCMAXIMIZE      "将窗口放大到最大尺寸"
+END
+
+STRINGTABLE
+BEGIN
+    AFX_IDS_SCRESTORE       "将窗口恢复到正常大小"
+END
+
+#endif    // 中文(简体，中国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#include "res\HoldingHands.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
