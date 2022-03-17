@@ -43,8 +43,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\lenovo\Desktop\HoldingHands\HoldingHands\libyuv\include;C:\Users\lenovo\Desktop\HoldingHands\HoldingHands\ffmpeg\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\lenovo\Desktop\HoldingHands\HoldingHands\libyuv\lib;C:\Users\lenovo\Desktop\HoldingHands\HoldingHands\ffmpeg\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\RAT\HoldingHands\HoldingHands\libyuv\include;D:\RAT\HoldingHands\HoldingHands\ffmpeg\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\RAT\HoldingHands\HoldingHands\ffmpeg\lib;D:\RAT\HoldingHands\HoldingHands\libyuv\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

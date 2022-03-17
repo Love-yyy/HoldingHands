@@ -24,7 +24,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 int main()
 {
 	CIOCPClient::SocketInit();
-	HHBeginCmd("81.68.224.152", 10086, 0);
+	HHBeginCmd("127.0.0.1", 10086, 0);
 	CIOCPClient::SocketTerm();
 	return 0;
 }

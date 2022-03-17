@@ -21,7 +21,7 @@ void HHBeginCamera(char* szServerAddr, unsigned short uPort, DWORD dwParam)
 int main()
 {
 	CIOCPClient::SocketInit();
-	HHBeginCamera("81.68.224.152", 10086, 0);
+	HHBeginCamera("127.0.0.1", 10086, 0);
 	//HHBeginCamera("127.0.0.1", 10086, 0);
 	CIOCPClient::SocketTerm();
 	return 0;

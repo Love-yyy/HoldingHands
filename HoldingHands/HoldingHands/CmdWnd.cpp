@@ -95,9 +95,9 @@ BOOL CCmdWnd::PreTranslateMessage(MSG* pMsg)
 				CString Cmd;
 				m_Cmd.GetWindowTextW(Cmd);		//
 				m_Cmd.SetWindowTextW(L"");		//Çå¿ÕÄÚÈÝ.
-				CStringA aCmd = CW2A(Cmd).m_szBuffer;//Ìø¹ý>
-				aCmd += "\r\n";
+				Cmd += L"\r\n";
 
+				CStringA aCmd = (CW2A(Cmd));
 				m_pHandler->Send(CMD_COMMAND, aCmd.GetBuffer(), aCmd.GetLength() + 1);
 				if (Cmd.GetLength())
 				{

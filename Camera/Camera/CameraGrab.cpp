@@ -328,6 +328,7 @@ BOOL CCameraGrab::GrabberInit(int idx,DWORD dwWidth,DWORD dwHeight)
 	DWORD dwCompression;
 	DWORD	dwBitCount;
 	x264_param_t param = { 0 };
+
 	GrabberTerm();
 
 	m_dwHeight = dwHeight;

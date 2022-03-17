@@ -62,6 +62,9 @@ void CCameraSrv::OnReadComplete(WORD Event, DWORD Total, DWORD dwRead, char*Buff
 	case CAMERA_ERROR:
 		OnError((WCHAR*)Buffer);
 		break;
+	case CAMERA_STOP_OK:
+		OnStopOk();
+		break;
 	default:
 		break;
 	}
@@ -81,9 +84,15 @@ void CCameraSrv::Start(int idx, DWORD dwWidth, DWORD dwHeight)
 void CCameraSrv::Stop()
 {
 	Send(CAMERA_STOP, 0, 0);
-	CameraTerm();
 }
 
+void CCameraSrv::OnStopOk()
+{
+	//清理资源
+	CameraTerm();
+	//通知窗口
+	m_pDlg->SendMessage(WM_CAMERA_STOP_OK, 0, 0);
+}
 BOOL CCameraSrv::CameraInit(DWORD dwHeight,DWORD dwWidth)
 {
 	CameraTerm();
@@ -169,7 +178,7 @@ void CCameraSrv::OnFrame(char*buffer,DWORD dwLen)
 {
 	if (m_pCodecContext == NULL)
 	{
-		//解码器还没有创建,丢弃
+		//解码器还没有创建,丢弃,
 		return;
 	}
 

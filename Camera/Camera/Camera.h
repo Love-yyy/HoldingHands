@@ -7,6 +7,9 @@
 #define CAMERA_VIDEOSIZE			(0xabc3)
 #define CAMERA_STOP					(0xabc4)
 
+#define CAMERA_STOP_OK				(0xabdd)
+
+
 #define CAMERA_FRAME				(0xabc6)
 #define CAMERA_SCREENSHOT			(0xabc7)
 

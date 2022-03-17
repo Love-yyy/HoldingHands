@@ -14,11 +14,15 @@ extern"C"
 #define CAMERA_DEVICELIST			(0xabc1)
 #define CAMERA_START				(0xabc2)
 #define CAMERA_VIDEOSIZE			(0xabc3)
+
 #define CAMERA_STOP					(0xabc4)
+#define CAMERA_STOP_OK				(0xabdd)
+
 
 #define CAMERA_GETFRAME				(0xabc5)
 #define CAMERA_FRAME				(0xabc6)
 #define CAMERA_SCREENSHOT			(0xabc7)
+
 
 #define CAMERA_ERROR				(0x0000)
 
@@ -49,6 +53,7 @@ public:
 
 	void OnFrame(char*Buffer, DWORD dwLen);
 	void OnVideoSize(DWORD dwVideoSize[]);
+	void OnStopOk();
 	void OnDeviceList(char*DeviceList);
 	void OnScreenShot();
 

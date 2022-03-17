@@ -49,6 +49,7 @@ BEGIN_MESSAGE_MAP(CCameraDlg, CDialogEx)
 	ON_MESSAGE(WM_CAMERA_FRAME,OnFrame)
 	ON_MESSAGE(WM_CAMERA_VIDEOSIZE,OnVideoSize)
 	ON_MESSAGE(WM_CAMERA_SCREENSHOT,OnScreenShot)
+	ON_MESSAGE(WM_CAMERA_STOP_OK,OnStopOk)
 	ON_WM_CLOSE()
 	ON_CBN_SELCHANGE(IDC_COMBO1, &CCameraDlg::OnCbnSelchangeCombo1)
 	ON_BN_CLICKED(IDC_BUTTON2, &CCameraDlg::OnBnClickedButton2)
@@ -81,19 +82,16 @@ void CCameraDlg::OnBnClickedButton1()
 	CString Size;
 	m_VideoSizeList.GetWindowTextW(Size);
 	swscanf(Size.GetBuffer(), L"%d%*c%*c%*c%d", &dwWidth, &dwHeight);
-
+	//
 	if (Text == "Start")
 	{
 		m_pHandler->Start(idx,dwWidth,dwHeight);
-		Text = "Stop";
-		pCtrl->SetWindowTextW(Text);
 	}
 	else
 	{
 		m_pHandler->Stop();
-		Text = "Start";
-		pCtrl->SetWindowTextW(Text);
 	}
+	pCtrl->EnableWindow(0);
 }
 
 LRESULT CCameraDlg::OnDeviceList(WPARAM wParam, LPARAM lParam)
@@ -233,7 +231,11 @@ void CCameraDlg::OnCbnSelchangeCombo1()
 
 LRESULT CCameraDlg::OnVideoSize(WPARAM Width, LPARAM Height)
 {
-
+	//Start 成功的时候
+	CWnd*pCtrl = GetDlgItem(IDC_BUTTON1);
+	pCtrl->SetWindowTextW(L"Stop");
+	pCtrl->EnableWindow(TRUE);
+	//
 	m_dwWidth = Width;
 	m_dwHeight = Height;
 
@@ -250,6 +252,14 @@ LRESULT CCameraDlg::OnVideoSize(WPARAM Width, LPARAM Height)
 		m_dwOrgX = (rect.Width() - m_dwWidth) / 2;
 	if (rect.Height() > m_dwHeight)
 		m_dwOrgY = (rect.Height() - m_dwHeight) / 2 + 45;
+	return 0;
+}
+
+LRESULT CCameraDlg::OnStopOk(WPARAM wParam, LPARAM lParam)
+{
+	CWnd*pCtrl = GetDlgItem(IDC_BUTTON1);
+	pCtrl->SetWindowTextW(L"Start");
+	pCtrl->EnableWindow(TRUE);
 	return 0;
 }
 

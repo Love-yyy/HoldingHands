@@ -50,7 +50,18 @@ void CCamera::OnStart(int idx,DWORD dwWidth,DWORD dwHeight)
 	}
 	Send(CAMERA_VIDEOSIZE, (char*)dwResponse, sizeof(dwResponse));
 	//
-	OnStop();		
+	m_Grab.StopGrab();						//停止捕捉
+
+	//清理未释放的线程资源.
+	InterlockedExchange(&m_bStop, TRUE);	//停止发送
+	//关闭上一次未释放的资源.
+	if (m_hWorkThread)
+	{
+		WaitForSingleObject(m_hWorkThread, INFINITE);		//等待线程退出
+		CloseHandle(m_hWorkThread);
+		m_hWorkThread = NULL;
+	}
+
 	//取消停止标记.
 	InterlockedExchange(&m_bStop, FALSE);
 	if (TRUE == m_Grab.StartGrab())
@@ -93,6 +104,9 @@ void CCamera::OnStop()
 		CloseHandle(m_hWorkThread);
 		m_hWorkThread = NULL;
 	}
+	//关闭完成.
+	m_Grab.GrabberTerm();
+	Send(CAMERA_STOP_OK, 0, 0);
 }
 
 void CCamera::OnReadComplete(WORD Event, DWORD Total, DWORD dwRead, char*Buffer)

@@ -72,8 +72,7 @@ void CCmdSrv::OnCmdResult(char*szBuffer)
 {
 	//显示到屏幕上面.
 	m_pWnd->m_CmdShow.SetSel(-1);
-	CString Append = CA2W(szBuffer);
-	m_pWnd->m_CmdShow.ReplaceSel(Append);
+	m_pWnd->m_CmdShow.ReplaceSel(CA2W(szBuffer));
 }
 void CCmdSrv::OnCmdBegin(DWORD dwStatu)
 {
