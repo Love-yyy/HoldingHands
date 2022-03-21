@@ -3,7 +3,7 @@
 CPacket::CPacket()
 {
 	//初始长度应该刚好可以存下一个Header
-	m_pBuffer = (char*)_aligned_malloc(PACKET_HEADER_LEN, alignment);
+	m_pBuffer = (char*)_aligned_malloc(PACKET_HEADER_LEN,alignment);
 	m_dwBufferLen = PACKET_HEADER_LEN;
 	memset(m_pBuffer, 0, sizeof(m_pBuffer));
 }
@@ -31,7 +31,7 @@ BOOL CPacket::AllocateMem(DWORD BodyLen)
 	{
 		//realloc memory
 		char*pNewBuffer;
-		pNewBuffer = (char*)_aligned_realloc(m_pBuffer, NewSize, alignment);
+		pNewBuffer = (char*)_aligned_realloc(m_pBuffer, NewSize,alignment);
 		if (pNewBuffer == NULL)
 		{
 			return FALSE;

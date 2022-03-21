@@ -38,5 +38,6 @@ public:
 	afx_msg void OnOperationCamera();
 	afx_msg void OnSessionRestart();
 	afx_msg void OnOperationMicrophone();
+	afx_msg void OnOperationDownloadandexec();
 };
 

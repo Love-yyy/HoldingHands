@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}</ProjectGuid>
+    <ProjectGuid>{94032527-6604-49C3-A7B0-7DE61BDD33F1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>RemoteDesktop</RootNamespace>
+    <RootNamespace>Camera</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,13 +41,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\lenovo\Desktop\libx264\include;C:\Users\lenovo\Desktop\libyuv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\lenovo\Desktop\libyuv\lib;C:\Users\lenovo\Desktop\libx264\dll;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\RAT\Camera\Camera\libx264\include;D:\RAT\Camera\Camera\libyuv\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\RAT\Camera\Camera\libx264\lib;D:\RAT\Camera\Camera\libyuv\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>D:\RAT\RemoteDesktop\RemoteDesktop\libx264\include;D:\RAT\RemoteDesktop\RemoteDesktop\libyuv\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\RAT\RemoteDesktop\RemoteDesktop\libyuv\lib;D:\RAT\RemoteDesktop\RemoteDesktop\libx264\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\RAT\MyRemoteSysClient\Camera\Camera\libx264\include;D:\RAT\MyRemoteSysClient\Camera\Camera\libyuv\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\RAT\MyRemoteSysClient\Camera\Camera\libx264\lib;D:\RAT\MyRemoteSysClient\Camera\Camera\libyuv\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -55,8 +55,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;REMOTEDESKTOP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -71,8 +70,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;REMOTEDESKTOP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,19 +80,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DesktopGrab.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraGrab.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="IOCPClient.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MySampleGrabberCB.cpp" />
     <ClCompile Include="Packet.cpp" />
-    <ClCompile Include="RemoteDesktop.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DesktopGrab.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraGrab.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="IOCPClient.h" />
+    <ClInclude Include="MySampleGrabberCB.h" />
     <ClInclude Include="Packet.h" />
-    <ClInclude Include="RemoteDesktop.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -46,11 +46,12 @@ class CCameraGrab
 
 	FrameList*		m_pFrameListHead;
 	FrameList*		m_pFrameListTail;
+
 	DWORD			m_dwBufSize;
 	void AddTail(char*, DWORD);
 	void RemoveHead(char**ppBuffer, DWORD*pLen);
 
-	IGraphBuilder*m_pGraph;
+	IGraphBuilder		  *m_pGraph;
 	ICaptureGraphBuilder2 *m_pBuild;
 	IBaseFilter			  *m_pCaptureFilter;
 	IBaseFilter			  *m_pSampleGrabberFilter;
@@ -66,7 +67,6 @@ class CCameraGrab
 
 
 	list<DeviceInfo> m_DeviceList;
-	
 	
 public:
 	void GetDeviceList(int DeviceIdx, IBaseFilter**ppBaseFilter);

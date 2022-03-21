@@ -119,8 +119,8 @@ LRESULT CCameraDlg::OnDeviceList(WPARAM wParam, LPARAM lParam)
 			if (split)
 			{
 				DeviceInfo* pDevice = new DeviceInfo;
-				wcscpy(pDevice->m_szDeviceName, pDeviceName);
 				*split++ = NULL;
+				wcscpy(pDevice->m_szDeviceName, pDeviceName);
 				WCHAR* size = split;
 				while (size[0])
 				{

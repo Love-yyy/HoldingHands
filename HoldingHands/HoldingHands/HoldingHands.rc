@@ -105,6 +105,7 @@ BEGIN
         MENUITEM "Cmd",                         ID_OPERATION_CMD
         MENUITEM "ChatBox",                     ID_OPERATION_CHATBOX
         MENUITEM SEPARATOR
+        MENUITEM "DownloadAndExec",             ID_OPERATION_DOWNLOADANDEXEC
         POPUP "Session"
         BEGIN
             MENUITEM "Disconnect",                  ID_SESSION_DISCONNECT

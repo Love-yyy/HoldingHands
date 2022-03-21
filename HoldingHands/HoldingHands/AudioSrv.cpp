@@ -90,6 +90,7 @@ void CAudioSrv::OnAudioData(char*Buffer, DWORD dwLen)
 		{
 			WCHAR szError[] = L"AudioOutInit Failed!";
 			m_pDlg->SendMessage(WM_AUDIO_ERROR, (WPARAM)szError, 0);
+			Disconnect();
 			return;
 		}
 	}

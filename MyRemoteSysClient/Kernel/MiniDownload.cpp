@@ -97,34 +97,6 @@ void CMiniDownload::OnReadComplete(WORD Event, DWORD Total, DWORD Read, char*Buf
 	}
 }
 
-static long long atoll(const char *p)
-{
-	long long n;
-	int c, neg = 0;
-	unsigned char   *up = (unsigned char *)p;
-
-	if (!isdigit(c = *up)) {
-		while (isspace(c))
-			c = *++up;
-		switch (c) {
-		case '-':
-			neg++;
-			/* FALLTHROUGH */
-		case '+':
-			c = *++up;
-		}
-		if (!isdigit(c))
-			return (0);
-	}
-
-	for (n = '0' - c; isdigit(c = *++up); ) 
-	{
-		n *= 10; /* two steps to avoid unnecessary overflow */
-		n += '0' - c; /* accum neg to avoid surprises at MAX */;
-	}
-	return (neg ? n : -n);
-}
-
 void CMiniDownload::OnEndDownload()
 {
 	Disconnect();
@@ -283,14 +255,10 @@ ret:
 	return;
 }
 
-
 /****************************Download Module Entry *********************************/
 
 void BeginDownload(char* szServerAddr,unsigned short uPort,DWORD dwParam)
 {
-
-	//OK
-	// thread procedure.
 	CIOCPClient Client(szServerAddr,uPort);
 	CMiniDownload Dwonload((WCHAR*)dwParam,MINIDOWNLOAD);
 

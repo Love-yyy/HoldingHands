@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Kernel", "Kernel\Kernel.vcxproj", "{5DDB2276-0866-489E-BC25-6E8F8C7E4C98}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Cmd", "Cmd\Cmd.vcxproj", "{B85BF416-EF89-4686-A831-9D1F8F729E05}"
@@ -10,6 +12,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FileMgr", "FileMgr\FileMgr.vcxproj", "{518699ED-DAF7-4B7A-A21A-EBC9CEE26AC1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Microphone", "Microphone\Microphone.vcxproj", "{274C6D55-2B55-46F1-BD3F-C7DCAF699BC5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RemoteDesktop", "RemoteDesktop\RemoteDesktop\RemoteDesktop.vcxproj", "{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Camera", "Camera\Camera\Camera.vcxproj", "{94032527-6604-49C3-A7B0-7DE61BDD33F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +43,14 @@ Global
 		{274C6D55-2B55-46F1-BD3F-C7DCAF699BC5}.Debug|Win32.Build.0 = Debug|Win32
 		{274C6D55-2B55-46F1-BD3F-C7DCAF699BC5}.Release|Win32.ActiveCfg = Release|Win32
 		{274C6D55-2B55-46F1-BD3F-C7DCAF699BC5}.Release|Win32.Build.0 = Release|Win32
+		{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}.Debug|Win32.Build.0 = Debug|Win32
+		{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}.Release|Win32.ActiveCfg = Release|Win32
+		{CC5FFEE5-F2DC-4D83-8B63-5FACA01A5085}.Release|Win32.Build.0 = Release|Win32
+		{94032527-6604-49C3-A7B0-7DE61BDD33F1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{94032527-6604-49C3-A7B0-7DE61BDD33F1}.Debug|Win32.Build.0 = Debug|Win32
+		{94032527-6604-49C3-A7B0-7DE61BDD33F1}.Release|Win32.ActiveCfg = Release|Win32
+		{94032527-6604-49C3-A7B0-7DE61BDD33F1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

