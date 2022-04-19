@@ -158,10 +158,9 @@ void CRemoteDesktopSrv::OnFrame(DWORD dwRead, char*Buffer)
 	return;
 }
 
-void CRemoteDesktopSrv::Control2(CtrlParam2*pParam)
+void CRemoteDesktopSrv::Control(CtrlParam*pParam)
 {
-	DWORD dwSize = pParam->m_dwCount * sizeof(INPUT) + sizeof(DWORD);
-	Send(REMOTEDESKTOP_CTRL, (char*)pParam, dwSize);
+	Send(REMOTEDESKTOP_CTRL, (char*)pParam, sizeof(CtrlParam));
 }
 /***************************************************************************
 *	Event Handler

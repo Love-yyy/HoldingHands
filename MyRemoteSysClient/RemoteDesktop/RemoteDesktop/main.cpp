@@ -10,8 +10,6 @@ extern "C"  __declspec(dllexport) void HHBeginDesktop(char* szServerAddr, unsign
 
 void HHBeginDesktop(char* szServerAddr, unsigned short uPort, DWORD dwParam)
 {
-	CIOCPClient::SocketInit();
-
 	CIOCPClient client(szServerAddr, uPort);
 
 	CRemoteDesktop rd(REMOTEDESKTOP);
@@ -22,12 +20,13 @@ void HHBeginDesktop(char* szServerAddr, unsigned short uPort, DWORD dwParam)
 
 	client.UnbindHandler();
 
-	CIOCPClient::SocketTerm();
 }
 
-//int main()
-//{
-//	//HHBeginDesktop("81.68.224.152", 10086, 0);
-//	HHBeginDesktop("10.148.169.252", 10086, 0);
-//	system("pause");
-//}
+#ifdef _DEBUG
+int main()
+{
+	CIOCPClient::SocketInit();
+	HHBeginDesktop("192.168.1.235", 10086, 0);
+	CIOCPClient::SocketTerm();
+}
+#endif

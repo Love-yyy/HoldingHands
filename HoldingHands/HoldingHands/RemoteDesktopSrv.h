@@ -24,15 +24,22 @@ extern "C"
 
 class CRemoteDesktopWnd;
 
-struct CtrlParam2
-{
-	DWORD m_dwCount;
-	INPUT m_inputs[1];
-};
+
 
 class CRemoteDesktopSrv :
 	public CEventHandler
 {
+public:
+	struct CtrlParam
+	{
+		DWORD dwType;
+		union
+		{
+			DWORD dwCoor;
+			DWORD VkCode;
+		}Param;
+		DWORD dwExtraData;
+	};
 private:
 	AVCodec*			m_pCodec;
 	AVCodecContext*		m_pCodecContext;
@@ -58,7 +65,7 @@ public:
 	
 	//
 	void NextFrame();
-	void Control2(CtrlParam2*pParam);
+	void Control(CtrlParam*pParam);
 
 	void SetMaxFps(DWORD dwMaxFps);
 	void OnClose();					//当socket断开的时候调用这个函数

@@ -21,7 +21,8 @@ CMiniFileTransDlg::CMiniFileTransDlg(CMiniFileTransSrv*pHandler, CWnd* pParent /
 
 	m_dwTotalCount = 0;
 	m_dwFinishedCount = 0;
-	
+	m_dwFailedCount = 0;
+
 	char szIP[128] = { 0 };
 	USHORT uPort;
 	m_pHandler->GetPeerName(szIP, uPort);
@@ -85,7 +86,7 @@ BOOL CMiniFileTransDlg::OnInitDialog()
 
 LRESULT CMiniFileTransDlg::OnTransInfo(WPARAM wParam, LPARAM lParam)
 {
-	MNFT_Trans_Info*pTransInfo = (MNFT_Trans_Info*)wParam;
+	CMiniFileTransSrv::MNFT_Trans_Info*pTransInfo = (CMiniFileTransSrv::MNFT_Trans_Info*)wParam;
 	m_ullTotalSize = pTransInfo->TotalSizeHi;
 	m_ullTotalSize <<= 32;
 	m_ullTotalSize |= pTransInfo->TotalSizeLo;
@@ -105,7 +106,7 @@ LRESULT CMiniFileTransDlg::OnTransInfo(WPARAM wParam, LPARAM lParam)
 }
 LRESULT CMiniFileTransDlg::OnTransFileBegin(WPARAM wParam, LPARAM lParam)
 {
-	FileInfo*pFile = (FileInfo*)wParam;
+	CMiniFileTransSrv::FileInfo*pFile = (CMiniFileTransSrv::FileInfo*)wParam;
 	CString Text;
 	Text.Format(L"Processing:%s", pFile->RelativeFilePath);
 	m_TransLog.SetSel(-1);
@@ -118,12 +119,16 @@ LRESULT CMiniFileTransDlg::OnTransFileBegin(WPARAM wParam, LPARAM lParam)
 LRESULT CMiniFileTransDlg::OnTransFileFinished(WPARAM wParam, LPARAM lParam)
 {
 	m_TransLog.SetSel(-1);
-	if (wParam == MNFT_STATU_SUCCESS)
-		m_TransLog.ReplaceSel(L"   -OK\r\n");
-	else
-		m_TransLog.ReplaceSel(L"   -Failed\r\n");
+	CString Text = L"   -OK\r\n";
+
+	if (wParam != MNFT_STATU_SUCCESS)
+	{
+		m_dwFailedCount++;
+		Text = L"   -Failed\r\n";
+	}
+	//¼ÇÂ¼½á¹û.
+	m_TransLog.ReplaceSel(Text);
 	m_dwFinishedCount++;
-	CString Text;
 	Text.Format(L"%d / %d", m_dwFinishedCount, m_dwTotalCount);
 	GetDlgItem(IDC_COUNT_PROGRESS)->SetWindowTextW(Text);
 	return 0;
@@ -174,6 +179,7 @@ LRESULT CMiniFileTransDlg::OnTransFinished(WPARAM wParam, LPARAM lParam)
 	CString Text;
 	Text.Format(L"[%s] Transfer Complete!", m_IP.GetBuffer());
 	SetWindowText(Text);
-	MessageBox(L"Transfer Complete!");
+	Text.Format(L"Totoal File Count:%d \r\nSuccess:%d \r\nFailed:%d \r\n", m_dwTotalCount, m_dwFinishedCount - m_dwFailedCount, m_dwFailedCount);
+	MessageBox(Text,L"Transfer Complete!");
 	return 0;
 }

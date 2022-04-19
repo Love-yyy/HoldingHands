@@ -40,7 +40,7 @@ void CRemoteDesktop::OnReadComplete(WORD Event, DWORD Total, DWORD Read, char*Bu
 		break;
 	case REMOTEDESKTOP_CTRL:
 		//_OnControl((CtrlParam*)Buffer);
-		OnControl((CtrlParam2*)Buffer);
+		OnControl((CtrlParam*)Buffer);
 		break;
 	case REMOTEDESKTOP_SETMAXFPS:
 		OnSetMaxFps(*(DWORD*)Buffer);
@@ -97,7 +97,59 @@ void CRemoteDesktop::OnSetMaxFps(DWORD dwMaxFps)
 }
 
 
-void CRemoteDesktop::OnControl(CtrlParam2*pParam)
+void CRemoteDesktop::OnControl(CtrlParam*pParam)
 {
-	UINT uResult = SendInput(pParam->m_dwCount, pParam->m_inputs, sizeof(INPUT));
+	switch (pParam->dwType)
+	{
+	case WM_KEYDOWN:
+		keybd_event(pParam->Param.VkCode, 0, 0, 0);
+		break;
+	case WM_KEYUP:
+		keybd_event(pParam->Param.VkCode, 0, KEYEVENTF_KEYUP, 0);
+		break;
+		//Êó±êÒÆ¶¯
+	case WM_MOUSEMOVE:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MOVE, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+		//×ó¼ü²Ù×÷
+	case WM_LBUTTONDOWN:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+	case WM_LBUTTONUP:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+	case WM_LBUTTONDBLCLK:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN|MOUSEEVENTF_LEFTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		Sleep(2);
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+		//ÓÒ¼ü²Ù×÷
+	case WM_RBUTTONDOWN:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTDOWN, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+	case WM_RBUTTONUP:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+	case WM_RBUTTONDBLCLK:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTDOWN|MOUSEEVENTF_RIGHTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		Sleep(2);
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP, LOWORD(pParam->Param.dwCoor), HIWORD(pParam->Param.dwCoor), 0, 0);
+		break;
+		//ÖÐ¼ü²Ù×÷
+	case WM_MBUTTONDOWN:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MIDDLEDOWN,0, 0, 0, 0);
+		break;
+	case WM_MBUTTONUP:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+		break;
+	case WM_MBUTTONDBLCLK:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_MIDDLEDOWN|MOUSEEVENTF_MIDDLEUP, 0, 0, 0, 0);
+		break;
+		//
+	case WM_MOUSEWHEEL:
+		mouse_event(MOUSEEVENTF_ABSOLUTE | MOUSEEVENTF_WHEEL, 0, 0, pParam->dwExtraData, 0);
+		break;
+	default:
+		break;
+	}
 }

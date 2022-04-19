@@ -93,11 +93,12 @@ BOOL CCmdWnd::PreTranslateMessage(MSG* pMsg)
 			{
 				//按下回车键了
 				CString Cmd;
-				m_Cmd.GetWindowTextW(Cmd);		//
+				CStringA aCmd;
+				m_Cmd.GetWindowText(Cmd);		//
 				m_Cmd.SetWindowTextW(L"");		//清空内容.
-				Cmd += L"\r\n";
-
-				CStringA aCmd = (CW2A(Cmd));
+				//发送命令
+				aCmd = (CW2A(Cmd));
+				aCmd += "\r\n";
 				m_pHandler->Send(CMD_COMMAND, aCmd.GetBuffer(), aCmd.GetLength() + 1);
 				if (Cmd.GetLength())
 				{

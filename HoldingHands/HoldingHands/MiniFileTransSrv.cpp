@@ -43,7 +43,7 @@ void CMiniFileTransSrv::OnClose()
 void CMiniFileTransSrv::OnConnect()
 {
 	m_pDlg = new CMiniFileTransDlg(this);
-	if (FALSE == m_pDlg->Create(IDD_FILETRANS))
+	if (FALSE == m_pDlg->Create(IDD_FILETRANS,CWnd::GetDesktopWindow()))
 	{
 		Disconnect();
 		return;

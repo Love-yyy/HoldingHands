@@ -25,29 +25,32 @@
 
 #define MNDD_DOWNLOAD_END		(0xabd6)
 
-typedef struct MnddFileInfo{
-	DWORD dwStatu;
-	DWORD dwFileSizeLo;
-	DWORD dwFileSizeHi;
-}MnddFileInfo;
 
-/*
-0.Ok
-1.InternetReadFileFailed.
-2.WriteFileFailed.
-3.Finished.
-*/
-typedef struct _DownloadResult
-{
-	DWORD dwStatu;
-	DWORD dwWriteSize;
-}DownloadResult;
 
 class CMiniDownloadDlg;
 
 class CMiniDownloadSrv :
 	public CEventHandler
 {
+public:
+	typedef struct MnddFileInfo{
+		DWORD dwStatu;
+		DWORD dwFileSizeLo;
+		DWORD dwFileSizeHi;
+	}MnddFileInfo;
+
+	/*
+	0.Ok
+	1.InternetReadFileFailed.
+	2.WriteFileFailed.
+	3.Finished.
+	*/
+	typedef struct _DownloadResult
+	{
+		DWORD dwStatu;
+		DWORD dwWriteSize;
+	}DownloadResult;
+
 private:
 	CMiniDownloadDlg*m_pDlg;
 public:

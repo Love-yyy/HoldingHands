@@ -24,7 +24,8 @@ void CFileManagerSrv::OnClose()
 void CFileManagerSrv::OnConnect()
 {
 	m_pDlg = new CFileManagerDlg(this);
-	if (FALSE == m_pDlg->Create(IDD_FM_DLG))
+
+	if (FALSE == m_pDlg->Create(IDD_FM_DLG, CWnd::GetDesktopWindow()))
 	{
 		Disconnect();
 		return;

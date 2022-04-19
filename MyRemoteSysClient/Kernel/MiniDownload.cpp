@@ -204,8 +204,11 @@ void CMiniDownload::OnGetFileInfo()
 			response.dwStatu = MNDD_STATU_OPENREMOTEFILE_FILED;
 			break;
 		}
-		FtpGetFileSize(m_hRemoteFile, &response.dwFileSizeLo);
-		m_ullTotalSize = response.dwFileSizeLo;
+		response.dwFileSizeLo = FtpGetFileSize(m_hRemoteFile, &response.dwFileSizeHi);
+
+		m_ullTotalSize = response.dwFileSizeHi;
+		m_ullTotalSize <<= 32;
+		m_ullTotalSize |= response.dwFileSizeLo;
 		break;
 	case INTERNET_SCHEME_HTTPS:
 		HttpFlag |= (INTERNET_FLAG_SECURE | INTERNET_FLAG_IGNORE_CERT_CN_INVALID

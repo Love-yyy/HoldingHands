@@ -28,7 +28,7 @@ void CMiniDownloadSrv::OnConnect()
 	Send(MNDD_GET_FILE_INFO, 0, 0);
 	//
 	m_pDlg = new CMiniDownloadDlg(this);
-	if (FALSE == m_pDlg->Create(IDD_MNDD_DLG))
+	if (FALSE == m_pDlg->Create(IDD_MNDD_DLG,CWnd::GetDesktopWindow()))
 	{
 		Disconnect();
 		return;

@@ -12,23 +12,25 @@
 
 class CCameraSrv;
 
-struct DeviceInfo
-{
-	WCHAR			m_szDeviceName[128];
-	CList<CString>*	m_pVideoSizes;
-	~DeviceInfo()
-	{
-		if (m_pVideoSizes)
-			delete m_pVideoSizes;
-	}
-	DeviceInfo()
-	{
-		m_pVideoSizes = new CList<CString>;
-	}
-};
+
 
 class CCameraDlg : public CDialogEx
 {
+	struct DeviceInfo
+	{
+		WCHAR			m_szDeviceName[128];
+		CList<CString>*	m_pVideoSizes;
+		~DeviceInfo()
+		{
+			if (m_pVideoSizes)
+				delete m_pVideoSizes;
+		}
+		DeviceInfo()
+		{
+			m_pVideoSizes = new CList<CString>;
+		}
+	};
+
 	DECLARE_DYNAMIC(CCameraDlg)
 
 public:

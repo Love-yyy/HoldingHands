@@ -1,0 +1,97 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Kernel - Win32 Release--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A2.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /pdb:"Release/Kernel.pdb" /machine:I386 /nodefaultlib:"libcmt.lib" /out:"Release/Kernel.exe" 
+".\Release\Audio.obj"
+".\Release\AudioGrab.obj"
+".\Release\Camera.obj"
+".\Release\CameraGrab.obj"
+".\Release\Chat.obj"
+".\Release\Cmd.obj"
+".\Release\DesktopGrab.obj"
+".\Release\EventHandler.obj"
+".\Release\FileManager.obj"
+".\Release\FileMgrSearch.obj"
+".\Release\IOCPClient.obj"
+".\Release\Kernel.obj"
+".\Release\main.obj"
+".\Release\MiniDownload.obj"
+".\Release\MiniFileTrans.obj"
+".\Release\ModuleEntry.obj"
+".\Release\MySampleGrabberCB.obj"
+".\Release\Packet.obj"
+".\Release\RemoteDesktop.obj"
+".\Release\SearchFile.obj"
+".\Release\x264EncoderLoad.obj"
+".\Release\yuv.obj"
+".\Release\Chat.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A2.tmp"
+<h3>Output Window</h3>
+Linking...
+yuv.lib(convert.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(cpu_id.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(planar_functions.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_uv.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_win.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_any.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_common.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_win.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_any.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_common.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(convert.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(cpu_id.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(planar_functions.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_uv.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_win.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_any.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(row_common.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_win.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_any.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+yuv.lib(scale_common.obj) : warning LNK4044: unrecognized option "manifestdependency:type='win32' name='Microsoft.VC90.CRT' version='9.0.21022.8' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'"; ignored
+   Creating library Release/Kernel.lib and object Release/Kernel.exp
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A6.tmp" with contents
+[
+/nologo /o"Release/Kernel.bsc" 
+".\Release\Audio.sbr"
+".\Release\AudioGrab.sbr"
+".\Release\Camera.sbr"
+".\Release\CameraGrab.sbr"
+".\Release\Chat.sbr"
+".\Release\Cmd.sbr"
+".\Release\DesktopGrab.sbr"
+".\Release\EventHandler.sbr"
+".\Release\FileManager.sbr"
+".\Release\FileMgrSearch.sbr"
+".\Release\IOCPClient.sbr"
+".\Release\Kernel.sbr"
+".\Release\main.sbr"
+".\Release\MiniDownload.sbr"
+".\Release\MiniFileTrans.sbr"
+".\Release\ModuleEntry.sbr"
+".\Release\MySampleGrabberCB.sbr"
+".\Release\Packet.sbr"
+".\Release\RemoteDesktop.sbr"
+".\Release\SearchFile.sbr"
+".\Release\x264EncoderLoad.sbr"
+".\Release\yuv.sbr"]
+Creating command line "bscmake.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP4A6.tmp"
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+Kernel.exe - 0 error(s), 22 warning(s)
+</pre>
+</body>
+</html>

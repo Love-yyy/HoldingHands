@@ -32,25 +32,28 @@
 #define KNEL_DOWNANDEXEC				(0xdd07)
 
 
-typedef struct LoginInfo
-{
-	WCHAR szPrivateIP[128];				//
-	WCHAR szHostName[128];
-	WCHAR szUser[128];
-	WCHAR szOsName[128];
-	WCHAR szInstallDate[128];
-	WCHAR szCPU[128];
-	WCHAR szDisk_RAM[128];
-	DWORD dwHasCamera;
-	DWORD dwPing;
-	WCHAR szComment[256];
 
-}LoginInfo;
 
 
 class CKernelSrv :
 	public CEventHandler
 {
+public:
+	typedef struct LoginInfo
+	{
+		WCHAR szPrivateIP[128];				//
+		WCHAR szHostName[128];
+		WCHAR szUser[128];
+		WCHAR szOsName[128];
+		WCHAR szInstallDate[128];
+		WCHAR szCPU[128];
+		WCHAR szDisk_RAM[128];
+		DWORD dwHasCamera;
+		DWORD dwPing;
+		WCHAR szComment[256];
+
+	}LoginInfo;
+	
 private:
 	HWND m_hClientList;
 	void OnClose() ;	

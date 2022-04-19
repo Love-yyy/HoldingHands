@@ -179,7 +179,7 @@ void CIOCPServer::UpdateSpeed(DWORD io_type, DWORD TranferredBytes)
 }
 
 //工作线程函数
-void CIOCPServer::WorkerThread(void)
+unsigned int __stdcall CIOCPServer::WorkerThread(void*)
 {
 	//
 	HANDLE hCurrentThread;
@@ -241,9 +241,10 @@ void CIOCPServer::WorkerThread(void)
 			if (pServer->m_BusyCount == pServer->m_pThreadList->GetCount())
 			{
 				//没有空余的线程.为了防止所有线程都是挂起(除GQCP)的状态,要创建新的线程
-				DWORD ThreadId = 0;
+				unsigned int ThreadId = 0;
 				HANDLE hThread = 0;
-				hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)WorkerThread, 0, CREATE_SUSPENDED,&ThreadId);
+				hThread = (HANDLE)_beginthreadex(0, 0, WorkerThread, 0, CREATE_SUSPENDED, &ThreadId);
+				
 				if (hThread != NULL && ThreadId !=NULL)
 				{
 					pServer->m_pThreadList->SetAt((void*)ThreadId, hThread);
@@ -282,10 +283,12 @@ void CIOCPServer::WorkerThread(void)
 			delete pOverlappedplus;
 	}
 	if (!bLoop)
-	{
-		//当前线程数大于最大线程数的情况.自己关闭句柄.
-		CloseHandle(hCurrentThread);
+	{	
+		CloseHandle(hCurrentThread);	//当前线程数大于最大线程数的情况.自己退出,需要自己关闭句柄.
 	}
+	//
+	_endthreadex(0);					//_beginthreadex之后的清理工作
+	return 0;
 }
 
 void CIOCPServer::HandlerIOMsg(CClientContext*pClientContext, DWORD nTransferredBytes, DWORD IoType, BOOL bFailed)
@@ -620,9 +623,9 @@ BOOL CIOCPServer::StartServer(USHORT uPort)
 	for (i = 0; i < MaxConcurrent; i++)
 	{
 		//Create threads and save their handles and ids;
-		DWORD ThreadId = 0;
+		unsigned int ThreadId = 0;
 		HANDLE hThread = 0;
-		hThread = CreateThread(0, 0, (LPTHREAD_START_ROUTINE)WorkerThread, NULL, 0, &ThreadId);
+		hThread = (HANDLE)_beginthreadex(0, 0, WorkerThread, 0, 0, &ThreadId);
 		if (hThread != NULL && ThreadId!=NULL)
 		{
 			m_pThreadList->SetAt((void*)ThreadId, hThread);

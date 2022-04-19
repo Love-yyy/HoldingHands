@@ -36,7 +36,7 @@ void CCameraSrv::OnClose()
 void CCameraSrv::OnConnect()
 {
 	m_pDlg = new CCameraDlg(this);
-	if (FALSE == m_pDlg->Create(IDD_CAM_DLG))
+	if (FALSE == m_pDlg->Create(IDD_CAM_DLG,CWnd::GetDesktopWindow()))
 	{
 		Disconnect();
 		return;

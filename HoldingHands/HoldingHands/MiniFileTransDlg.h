@@ -35,6 +35,7 @@ public:
 
 	DWORD			m_dwTotalCount;
 	DWORD			m_dwFinishedCount;
+	DWORD			m_dwFailedCount;
 
 	CMiniFileTransSrv*m_pHandler;
 	CString			m_IP;

@@ -37,8 +37,8 @@ void CMiniDownloadDlg::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CMiniDownloadDlg, CDialogEx)
 	ON_BN_CLICKED(IDOK, &CMiniDownloadDlg::OnBnClickedOk)
-	ON_MESSAGE(WM_MNDD_FILEINFO, OnGetFileInfoReply)
-	ON_MESSAGE(WM_MNDD_DOWNLOAD_RESULT, OnDownloadReply)
+	ON_MESSAGE(WM_MNDD_FILEINFO, OnFileInfo)
+	ON_MESSAGE(WM_MNDD_DOWNLOAD_RESULT, OnDownloadParital)
 	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
@@ -50,9 +50,9 @@ void CMiniDownloadDlg::OnBnClickedOk()
 {
 }
 
-LRESULT CMiniDownloadDlg::OnGetFileInfoReply(WPARAM wParam, LPARAM lParam)
+LRESULT CMiniDownloadDlg::OnFileInfo(WPARAM wParam, LPARAM lParam)
 {
-	MnddFileInfo*pFileInfo = (MnddFileInfo*)wParam;
+	CMiniDownloadSrv::MnddFileInfo*pFileInfo = (CMiniDownloadSrv::MnddFileInfo*)wParam;
 	CString Text;
 
 	switch (pFileInfo->dwStatu)
@@ -90,9 +90,9 @@ LRESULT CMiniDownloadDlg::OnGetFileInfoReply(WPARAM wParam, LPARAM lParam)
 	}
 	return 0;
 }
-LRESULT CMiniDownloadDlg::OnDownloadReply(WPARAM wParam, LPARAM lParam)
+LRESULT CMiniDownloadDlg::OnDownloadParital(WPARAM wParam, LPARAM lParam)
 {
-	DownloadResult*pResult = (DownloadResult*)wParam;
+	CMiniDownloadSrv::DownloadResult*pResult = (CMiniDownloadSrv::DownloadResult*)wParam;
 	CString Title;
 	//更新下载进度.
 	m_ullFinishedSize += pResult->dwWriteSize;
@@ -141,9 +141,7 @@ LRESULT CMiniDownloadDlg::OnDownloadReply(WPARAM wParam, LPARAM lParam)
 		SetWindowText(Title);
 	
 		if (pResult->dwStatu == 3)
-		{
 			MessageBox(L"Download Finished!", m_IP.GetBuffer());
-		}
 		break;
 	case 1:
 		MessageBox(L"Internet Read File Failed!", L"Error");

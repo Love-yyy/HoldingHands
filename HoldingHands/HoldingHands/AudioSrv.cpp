@@ -31,7 +31,7 @@ CAudioSrv::~CAudioSrv()
 void CAudioSrv::OnConnect()
 {
 	m_pDlg = new CAudioDlg(this);
-	if (FALSE == m_pDlg->Create(IDD_AUDIODLG))
+	if (FALSE == m_pDlg->Create(IDD_AUDIODLG,CWnd::GetDesktopWindow()))
 	{
 		Disconnect();
 		return;

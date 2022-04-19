@@ -17,30 +17,32 @@
 // CFileManagerDlg ¶Ô»°¿ò	
 class CFileManagerSrv;
 
-typedef struct DriverInfo
-{
-	WCHAR szName[128];
-	WCHAR szTypeName[128];
-	WCHAR szFileSystem[128];
-	ULARGE_INTEGER	Total;
-	ULARGE_INTEGER	Free;
-	DWORD dwType;
-}DriverInfo;
-
-
-typedef struct FMFileInfo
-{
-	DWORD dwFileAttribute;
-	DWORD dwFileSizeLo;
-	DWORD dwFileSizeHi;
-	DWORD dwLastWriteLo;
-	DWORD dwLastWriteHi;
-	WCHAR szFileName[2];
-}FMFileInfo;
 
 class CFileManagerDlg : public CDialogEx
 {
 	
+	typedef struct DriverInfo
+	{
+		WCHAR szName[128];
+		WCHAR szTypeName[128];
+		WCHAR szFileSystem[128];
+		ULARGE_INTEGER	Total;
+		ULARGE_INTEGER	Free;
+		DWORD dwType;
+	}DriverInfo;
+
+
+	typedef struct FMFileInfo
+	{
+		DWORD dwFileAttribute;
+		DWORD dwFileSizeLo;
+		DWORD dwFileSizeHi;
+		DWORD dwLastWriteLo;
+		DWORD dwLastWriteHi;
+		WCHAR szFileName[2];
+	}FMFileInfo;
+
+
 	DECLARE_DYNAMIC(CFileManagerDlg)
 
 public:

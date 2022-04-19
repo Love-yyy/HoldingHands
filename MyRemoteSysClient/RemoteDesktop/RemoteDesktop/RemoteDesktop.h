@@ -16,14 +16,20 @@
 #define REMOTEDESKTOP_SETMAXFPS		(0xaaa5)
 
 
-struct CtrlParam2
-{
-	DWORD m_dwCount;
-	INPUT m_inputs[1];
-};
 class CRemoteDesktop :
 	public CEventHandler
 {
+public:
+	struct CtrlParam
+	{
+		DWORD dwType;
+		union
+		{
+			DWORD dwCoor;
+			DWORD VkCode;
+		}Param;
+		DWORD dwExtraData;
+	};
 private:
 	CDesktopGrab m_grab;
 	DWORD		 m_dwLastTime;
@@ -42,7 +48,7 @@ public:
 	void OnGetSize();
 
 	void OnNextFrame(char*flag);
-	void OnControl(CtrlParam2*Params);
+	void OnControl(CtrlParam*Param);
 	void OnSetMaxFps(DWORD dwMaxFps);
 
 	CRemoteDesktop(DWORD dwIdentity);

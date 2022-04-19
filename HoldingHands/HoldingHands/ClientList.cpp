@@ -70,7 +70,7 @@ int CClientList::OnCreate(LPCREATESTRUCT lpCreateStruct)
 LRESULT CClientList::OnClientLogin(WPARAM wParam, LPARAM lParam)
 {
 	CEventHandler*pHandler = (CEventHandler*)wParam;
-	LoginInfo*pLoginInfo = (LoginInfo*)lParam;
+	CKernelSrv::LoginInfo*pLoginInfo = (CKernelSrv::LoginInfo*)lParam;
 	CString Text;
 	int idx = GetItemCount();
 	char PeerName[64];

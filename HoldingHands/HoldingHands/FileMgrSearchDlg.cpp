@@ -67,14 +67,16 @@ BOOL CFileMgrSearchDlg::OnInitDialog()
 	// 异常:  OCX 属性页应返回 FALSE
 }
 
-struct FindFile
-{
-	DWORD dwFileAttribute;
-	WCHAR szFileName[2];
-};
+
 
 LRESULT CFileMgrSearchDlg::OnFound(WPARAM wParam, LPARAM lParam)
 {
+	struct FindFile
+	{
+		DWORD dwFileAttribute;
+		WCHAR szFileName[2];
+	};
+
 	FindFile*pFindFile = (FindFile*)wParam;
 	WCHAR*szLocation = pFindFile->szFileName;
 	WCHAR*szFileName = wcsstr(pFindFile->szFileName, L"\n");

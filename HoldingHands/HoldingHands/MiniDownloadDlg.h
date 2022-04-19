@@ -24,13 +24,14 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
-	CProgressCtrl m_Progress;
+	CProgressCtrl		m_Progress;
 	CMiniDownloadSrv*	m_pHandler;
 	ULONGLONG			m_ullTotalSize;
 	ULONGLONG			m_ullFinishedSize;
 	CString				m_IP;
-	afx_msg LRESULT OnGetFileInfoReply(WPARAM wParam, LPARAM lParam);
-	afx_msg LRESULT OnDownloadReply(WPARAM wParam, LPARAM lParam);
+
+	afx_msg LRESULT OnFileInfo(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnDownloadParital(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnClose();
 	virtual BOOL OnInitDialog();
 };

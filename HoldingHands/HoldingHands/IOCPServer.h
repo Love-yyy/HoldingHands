@@ -120,7 +120,7 @@ private:
 	//要确保在FreeContext调用后不会再做相关的操作
 	void FreeContext(CClientContext*pContext);
 	//
-	static void WorkerThread(void);
+	static unsigned int __stdcall WorkerThread(void*);
 	//只允许创建一个实例
 
 	CIOCPServer(HWND hWnd);

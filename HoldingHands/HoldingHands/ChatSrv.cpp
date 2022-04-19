@@ -25,7 +25,7 @@ void CChatSrv::OnConnect()
 		wcscpy(m_szNickName,dlg.m_NickName);
 	}
 	m_pDlg = new CChatDlg(this);
-	if (m_pDlg->Create(IDD_CHAT_DLG) == FALSE)
+	if (m_pDlg->Create(IDD_CHAT_DLG,CWnd::GetDesktopWindow()) == FALSE)
 	{
 		Disconnect();
 		return;

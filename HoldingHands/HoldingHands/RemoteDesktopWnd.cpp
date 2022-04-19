@@ -265,16 +265,14 @@ LRESULT CRemoteDesktopWnd::OnDraw(WPARAM wParam, LPARAM lParam)
 	return 0;
 }
 
-
-
 BOOL CRemoteDesktopWnd::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 {
 	// TODO:  在此添加专用代码和/或调用基类
 	if (!m_bCtrlKeyboard && !m_bCtrlMouse)
 		return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 	
-	CtrlParam2* pParam = NULL;
-	DWORD dwParamSize = sizeof(DWORD) + sizeof(INPUT);
+	CRemoteDesktopSrv::CtrlParam Param = { 0 };
+
 	if (message >= WM_MOUSEMOVE && message <= WM_MOUSEWHEEL && m_bCtrlMouse)
 	{
 		DWORD dwX, dwY;
@@ -291,89 +289,27 @@ BOOL CRemoteDesktopWnd::OnWndMsg(UINT message, WPARAM wParam, LPARAM lParam, LRE
 		{
 			dwX += m_OrgPt.x * SCROLL_UINT;
 			dwY += m_OrgPt.y * SCROLL_UINT;
-
 			dwX = dwX * 65535.0 / m_dwDeskWidth;
 			dwY = dwY * 65535.0 / m_dwDeskHeight;
 		}
 		
+		Param.dwType = message;
+		Param.Param.dwCoor = MAKEWPARAM(dwX,dwY);		//坐标.
 
-		if (message == WM_LBUTTONDBLCLK || message == WM_RBUTTONDBLCLK || WM_MBUTTONDBLCLK) 
-		{
-			dwParamSize += sizeof(INPUT);
-		}
-
-		pParam = (CtrlParam2*)malloc(dwParamSize);
-		memset(pParam, 0, dwParamSize);
-		pParam->m_dwCount = 1;
-		
-		pParam->m_inputs[0].type = INPUT_MOUSE;
-		pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_ABSOLUTE;
-		pParam->m_inputs[0].mi.dx = dwX;
-		pParam->m_inputs[0].mi.dy = dwY;
-		switch (message)
-		{
-			case WM_MOUSEMOVE:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_MOVE ;
-				break;
-			case WM_LBUTTONDOWN:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_LEFTDOWN;
-				break;
-			case WM_LBUTTONUP:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_LEFTUP ;
-				break;
-			case WM_LBUTTONDBLCLK:
-				pParam->m_dwCount = 2;
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP ;
-				memcpy(&pParam->m_inputs[1], &pParam->m_inputs[0], sizeof(INPUT));
-				break;
-			case WM_RBUTTONDOWN:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_RIGHTDOWN ;
-				break;
-			case WM_RBUTTONUP:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_RIGHTUP;
-				break;
-			case WM_RBUTTONDBLCLK:
-				pParam->m_dwCount = 2;
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_RIGHTDOWN | MOUSEEVENTF_RIGHTUP;
-				memcpy(&pParam->m_inputs[1], &pParam->m_inputs[0], sizeof(INPUT));
-				break;
-			case WM_MBUTTONDOWN:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_MIDDLEDOWN;
-				break;
-			case WM_MBUTTONUP:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_MIDDLEUP;
-				break;
-			case WM_MBUTTONDBLCLK:
-				pParam->m_dwCount = 2;
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_MIDDLEDOWN | MOUSEEVENTF_MIDDLEUP;
-				memcpy(&pParam->m_inputs[1], &pParam->m_inputs[0], sizeof(INPUT));
-				break;
-			case WM_MOUSEWHEEL:
-				pParam->m_inputs[0].mi.dwFlags |= MOUSEEVENTF_WHEEL;
-				pParam->m_inputs[0].mi.mouseData = (SHORT)HIWORD(wParam);
-				break;
-		}
-		m_pHandler->Control2(pParam);
-		free(pParam);
+		if (message == WM_MOUSEWHEEL)
+			Param.dwExtraData = (SHORT)(HIWORD(wParam));
+		m_pHandler->Control(&Param);
 		return TRUE;
 	}
 	if ((message == WM_KEYDOWN || message == WM_KEYUP) && m_bCtrlKeyboard)
 	{
-		pParam = (CtrlParam2*)malloc(dwParamSize);
-		memset(pParam, 0, dwParamSize);
-		pParam->m_dwCount = 1;
-		pParam->m_inputs[0].type = INPUT_KEYBOARD;
-		pParam->m_inputs[0].ki.wVk = wParam;
-		if (message == WM_KEYUP)
-			pParam->m_inputs[0].ki.dwFlags = KEYEVENTF_KEYUP;
-
-		m_pHandler->Control2(pParam);
-		free(pParam);
+		Param.dwType = message;				//消息类型
+		Param.Param.VkCode = wParam;		//vkCode
+		m_pHandler->Control(&Param);		//
 		return TRUE;
 	}
 	return CFrameWnd::OnWndMsg(message, wParam, lParam, pResult);
 }
-
 
 void CRemoteDesktopWnd::OnSize(UINT nType, int cx, int cy)
 {

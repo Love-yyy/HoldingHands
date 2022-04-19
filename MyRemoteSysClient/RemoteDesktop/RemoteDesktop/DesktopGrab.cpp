@@ -188,7 +188,6 @@ BOOL CDesktopGrab::GetFrame(char**ppbuffer, DWORD*pSize, BOOL bGrabMouse, BOOL b
 }
 
 //以下代码来自ffmpeg.
-
 void CDesktopGrab::DrawMouse()
 {
 	CURSORINFO ci = { 0 };
